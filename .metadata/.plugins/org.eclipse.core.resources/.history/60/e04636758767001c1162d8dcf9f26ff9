@@ -1,0 +1,9 @@
+package br.ifsp.edu.dw.projectmanager.domain.model;
+
+public class Employee {
+	private Long code;
+	private String name;
+	private String cpf;
+	private BigDecimal salary;
+	private boolean active;
+}

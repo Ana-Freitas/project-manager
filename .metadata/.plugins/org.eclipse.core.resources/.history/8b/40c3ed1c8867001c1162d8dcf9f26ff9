@@ -1,0 +1,5 @@
+package br.ifsp.edu.dw.projectmanager.domain.model;
+
+public class ProjectEmployee {
+
+}

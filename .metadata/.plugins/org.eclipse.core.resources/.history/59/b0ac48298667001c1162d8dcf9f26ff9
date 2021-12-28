@@ -1,0 +1,16 @@
+package br.ifsp.edu.dw.projectmanager.domain.model;
+
+public class Group {
+	private Long code;
+	private String name;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Long getCode() {
+		return code;
+	}
+}

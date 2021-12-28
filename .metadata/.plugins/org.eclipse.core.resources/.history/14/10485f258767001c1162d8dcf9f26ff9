@@ -1,0 +1,56 @@
+package br.ifsp.edu.dw.projectmanager.domain.model;
+
+import java.time.LocalDate;
+import java.util.Objects;
+
+public class Project {
+	private Long code;
+	private String name;
+	private String description;
+	private LocalDate startDate;
+	private LocalDate endDate;
+	private boolean active;
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Long getCode() {
+		return code;
+	}
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+	public LocalDate getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(code);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Project other = (Project) obj;
+		return Objects.equals(code, other.code);
+	}
+}

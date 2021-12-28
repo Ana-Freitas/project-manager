@@ -1,0 +1,12 @@
+package br.ifsp.edu.dw.projectmanager.domain.model;
+
+import java.time.LocalDate;
+
+public class ProjectEmployee {
+	private Long code;
+	private Integer workload;
+	private Boolean manager;
+	private LocalDate startParticipation;
+	private LocalDate endParticipation;
+	
+}

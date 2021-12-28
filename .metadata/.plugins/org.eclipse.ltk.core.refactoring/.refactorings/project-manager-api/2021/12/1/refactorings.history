@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;br.ifsp.edu.dw.projectmanager.domain.model.Employee&apos; to &apos;Project&apos;&#x0D;&#x0A;- Original project: &apos;project-manager-api&apos;&#x0D;&#x0A;- Original element: &apos;br.ifsp.edu.dw.projectmanager.domain.model.Employee&apos;&#x0D;&#x0A;- Renamed element: &apos;br.ifsp.edu.dw.projectmanager.domain.model.Project&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Employee&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;br.ifsp.edu.dw.projectmanager.domain.model{Employee.java[Employee" matchStrategy="1" name="Project" qualified="false" references="true" similarDeclarations="false" stamp="1640658876485" textual="false" version="1.0"/>
+</session>
