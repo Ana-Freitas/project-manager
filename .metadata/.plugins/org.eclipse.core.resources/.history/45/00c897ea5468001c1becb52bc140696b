@@ -4,7 +4,7 @@ CREATE TABLE sectors(
     `name` VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `groups`(
+CREATE TABLE `teste`(
 	`code` BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -34,10 +34,10 @@ CREATE TABLE employees (
     `name` VARCHAR(50) NOT NULL,
     cpf VARCHAR(14) NOT NULL,
     salary DECIMAL(10,2),
-    `groups` BIGINT(20),
+    `teste` BIGINT(20),
     sector BIGINT(20),
     `active` TINYINT DEFAULT 0,
-    FOREIGN KEY (`groups`) REFERENCES `groups`(`code`),
+    FOREIGN KEY (`teste`) REFERENCES `teste`(`code`),
     FOREIGN KEY (sector) REFERENCES sectors(`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -67,9 +67,9 @@ CREATE TABLE project_employee(
 -- SECTOR
 INSERT INTO sectors VALUES(1, 'TI');
 
--- groups
-INSERT INTO `groups` VALUES(1, 'Dev. Back-end');
-INSERT INTO `groups` VALUES(2, 'Dev. Front-end');
+-- teste
+INSERT INTO `teste` VALUES(1, 'Dev. Back-end');
+INSERT INTO `teste` VALUES(2, 'Dev. Front-end');
 
 -- USERS
 INSERT INTO `users` VALUES(1, 'Admin', 'admin@ifsp.edu.br', '123456'); 
@@ -93,7 +93,7 @@ INSERT INTO permissions (`code`, `description`) VALUES (10, 'ROLE_SAVE_SECTOR');
 INSERT INTO permissions (`code`, `description`) VALUES (11, 'ROLE_REMOVE_SECTOR');
 INSERT INTO permissions (`code`, `description`) VALUES (12, 'ROLE_SEARCH_SECTOR');
 
-INSERT INTO permissions (`code`, `description`) VALUES (13, 'ROLE_SAVE_groups');
-INSERT INTO permissions (`code`, `description`) VALUES (14, 'ROLE_REMOVE_groups');
-INSERT INTO permissions (`code`, `description`) VALUES (15, 'ROLE_SEARCH_groups');
+INSERT INTO permissions (`code`, `description`) VALUES (13, 'ROLE_SAVE_teste');
+INSERT INTO permissions (`code`, `description`) VALUES (14, 'ROLE_REMOVE_teste');
+INSERT INTO permissions (`code`, `description`) VALUES (15, 'ROLE_SEARCH_teste');
 

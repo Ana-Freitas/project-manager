@@ -1,0 +1,13 @@
+package br.ifsp.edu.dw.projectmanager.resource;
+
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RestController
+@RequestMapping("/group")
+public class GroupResource {
+
+}
