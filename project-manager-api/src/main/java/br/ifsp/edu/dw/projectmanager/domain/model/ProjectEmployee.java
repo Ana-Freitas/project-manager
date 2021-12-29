@@ -3,12 +3,33 @@ package br.ifsp.edu.dw.projectmanager.domain.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
+@Table(name = "project_employee")
 public class ProjectEmployee {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long code;
 	private Integer workload;
 	private Boolean manager;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "start_participation")
 	private LocalDate startParticipation;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "end_participation")
 	private LocalDate endParticipation;
+	
 	public Integer getWorkload() {
 		return workload;
 	}
@@ -51,6 +72,4 @@ public class ProjectEmployee {
 		ProjectEmployee other = (ProjectEmployee) obj;
 		return Objects.equals(code, other.code);
 	}
-	
-	
 }

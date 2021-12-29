@@ -3,11 +3,39 @@ package br.ifsp.edu.dw.projectmanager.domain.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
+@Table(name = "projects")
 public class Project {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long code;
+	
+	@NotNull
+	@Size(min = 3, max = 50)
 	private String name;
+	
+	@NotNull
+	@Size(min = 3, max = 100)
 	private String description;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "start_date")
 	private LocalDate startDate;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name = "end_date")
 	private LocalDate endDate;
 	private Boolean active;
 	
