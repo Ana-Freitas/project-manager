@@ -97,3 +97,5 @@ INSERT INTO permissions (`code`, `description`) VALUES (13, 'ROLE_SAVE_groups');
 INSERT INTO permissions (`code`, `description`) VALUES (14, 'ROLE_REMOVE_groups');
 INSERT INTO permissions (`code`, `description`) VALUES (15, 'ROLE_SEARCH_groups');
 
+INSERT INTO permissions (`code`, `description`) VALUES (16, 'ROLE_ADD_permission');
+INSERT INTO permissions (`code`, `description`) VALUES (17, 'ROLE_REMOVE_permission');

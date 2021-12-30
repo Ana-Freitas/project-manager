@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -38,6 +40,10 @@ public class Project {
 	@Column(name = "end_date")
 	private LocalDate endDate;
 	private Boolean active;
+	
+	@ManyToOne
+	@JoinColumn(name = "sectors")
+	private Sector sector;
 	
 	public String getDescription() {
 		return description;
@@ -72,6 +78,13 @@ public class Project {
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
+	public Sector getSector() {
+		return this.sector;
+	}
+	public void setSector(Sector sector) {
+		this.sector = sector;
+	}
+
 	
 	@Override
 	public int hashCode() {

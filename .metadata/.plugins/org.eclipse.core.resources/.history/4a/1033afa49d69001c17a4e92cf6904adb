@@ -1,0 +1,7 @@
+package br.ifsp.edu.dw.projectmanager.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PermissionRepository extends JpaRepository<T, ID> {
+
+}

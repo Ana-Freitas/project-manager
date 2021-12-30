@@ -1,0 +1,18 @@
+package br.ifsp.edu.dw.projectmanager.resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.ifsp.edu.dw.projectmanager.repository.GroupRepository;
+import br.ifsp.edu.dw.projectmanager.service.GroupService;
+
+@RestController
+@RequestMapping("/employee")
+public class EmployeeResource {
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private GroupService employeeService;
+}

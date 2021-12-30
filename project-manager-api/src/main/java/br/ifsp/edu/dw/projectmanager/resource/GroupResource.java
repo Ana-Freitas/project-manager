@@ -60,7 +60,7 @@ public class GroupResource {
 	}
 	
 	@PutMapping("/{code}")
-	public ResponseEntity<Group> update(@PathVariable Long code, @Valid @RequestBody Group group) {
+	public ResponseEntity<Group> update(@PathVariable Long code, @RequestBody Group group) {
 		Group saved = groupService.update(code, group);
 		return ResponseEntity.ok(saved);
 	}

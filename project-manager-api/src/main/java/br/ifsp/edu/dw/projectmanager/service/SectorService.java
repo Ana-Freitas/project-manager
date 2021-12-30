@@ -1,6 +1,5 @@
 package br.ifsp.edu.dw.projectmanager.service;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ public class SectorService {
 	@Autowired
 	private SectorRepository sectorRepository;
 	
-	public Sector update(Long code, @Valid Sector sector) {
+	public Sector update(Long code, Sector sector) {
 		Sector saved = get(code);
 		BeanUtils.copyProperties(sector, saved, "code");
 		return sectorRepository.save(saved);

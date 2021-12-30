@@ -1,0 +1,51 @@
+package br.ifsp.edu.dw.projectmanager.service;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.ifsp.edu.dw.projectmanager.domain.model.Employee;
+import br.ifsp.edu.dw.projectmanager.domain.model.ProjectEmployee;
+import br.ifsp.edu.dw.projectmanager.repository.EmployeeRepository;
+import br.ifsp.edu.dw.projectmanager.repository.ProjectEmployeeRepository;
+
+@Service
+public class EmployeeService {
+	
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private ProjectEmployeeRepository projEmployeeRepository;
+	
+	public Employee update(Long code, Employee employee) {
+		Employee saved = get(code);
+		BeanUtils.copyProperties(employee, saved, "code");
+		return employeeRepository.save(saved);
+	}
+
+	public Employee get(Long code) {
+		return employeeRepository.findById(code).orElseThrow();
+	}
+
+	public ProjectEmployee alocateInProject(ProjectEmployee projemployee) {
+		Employee employee = get(projemployee.getEmployee().getCode());
+		projemployee.setEmployee(employee);
+		return projEmployeeRepository.save(projemployee);
+	}
+
+	public ProjectEmployee deallocateProject(Long user, Long project) {
+		Employee employee = get(user);
+		List<ProjectEmployee> alocations = employee.getAlocations();
+		Optional<ProjectEmployee> alocation = alocations.stream().filter(x -> x.getProject().getCode() == project).findFirst();
+		if(alocation.isPresent()) {
+			alocation.get().setEndParticipation(LocalDate.now());
+			return alocation.get(); 
+		}
+		return null;
+	}
+}

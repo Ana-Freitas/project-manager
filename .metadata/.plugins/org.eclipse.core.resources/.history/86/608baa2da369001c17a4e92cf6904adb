@@ -1,0 +1,5 @@
+package br.ifsp.edu.dw.projectmanager.service;
+
+public class EmployeeService {
+
+}

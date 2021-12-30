@@ -1,6 +1,8 @@
 package br.ifsp.edu.dw.projectmanager.domain.model;
 
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
@@ -8,6 +10,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import java.util.Objects;
 
@@ -30,6 +35,10 @@ public class User {
 	@NotNull
 	private String password;
 	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "users_permissions", joinColumns = @JoinColumn(name = "user_code"), inverseJoinColumns = @JoinColumn(name = "permission_code"))
+	private List<Permission> permissions;
+	
 	public String getName() {
 		return name;
 	}
@@ -50,6 +59,12 @@ public class User {
 	}
 	public Long getCode() {
 		return code;
+	}
+	public List<Permission> getPermissions() {
+		return permissions;
+	}
+	public void setPermissions(List<Permission> permissions) {
+		this.permissions = permissions;
 	}
 	
 	@Override

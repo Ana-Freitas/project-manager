@@ -1,0 +1,8 @@
+package br.ifsp.edu.dw.projectmanager.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+
+}

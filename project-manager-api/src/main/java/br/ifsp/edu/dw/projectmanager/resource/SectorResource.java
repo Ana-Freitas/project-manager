@@ -60,7 +60,7 @@ public class SectorResource {
 	}
 	
 	@PutMapping("/{code}")
-	public ResponseEntity<Sector> update(@PathVariable Long code, @Valid @RequestBody Sector sector) {
+	public ResponseEntity<Sector> update(@PathVariable Long code, @RequestBody Sector sector) {
 		Sector saved = sectorService.update(code, sector);
 		return ResponseEntity.ok(saved);
 	}
