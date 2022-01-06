@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="p-col-12">
+        <h1>Grupos</h1>
+
+        <div class="p-col-12">
+            <a pButton label="Novo Grupo" routerLink="/group/new" icon="pi pi-plus" iconPos="right"></a>
+        </div>
+
+        <div class="p-grid">
+            <div class="p-col-12">
+                <p-table [value]="groups" [responsive]="true">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-group>
+                        <tr>
+                            <td>
+                                <span class="p-column-title">Id</span>
+                                {{ group.code }}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Nome</span>
+                                {{ group.name }}
+                            </td>
+                            <td class="col-action-content">
+                            <button pButton 
+                                icon="pi pi-pencil" 
+                                pTooltip="Editar" 
+                                tooltipPosition="top">
+                            </button>
+                                
+                            <button pButton 
+                                icon="pi pi-trash" 
+                                pTooltip="Excluir" 
+                                tooltipPosition="top"
+                                class="p-button-danger">
+                            </button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+
+    </div>
+</div>

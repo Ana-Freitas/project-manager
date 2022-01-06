@@ -1,0 +1,22 @@
+<div class="container">
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="save(f)">
+        <div class="p-grid">
+            <div class="p-col-12">
+                <h1>{{ isEdition() ? "Editar" : "Novo"}} Grupo</h1>
+            </div>
+            <div>
+                <span class="p-float-label">
+                    <input id="txtId" name="txtId" type="text" pInputText [(ngModel)]="entity.code" [disabled]="!isEdition">
+                    <label for="txtId">Id</label>
+                </span>
+            </div>
+            <div>
+                <span class="p-float-label">
+                    <input id="txtName" name="txtName" type="text" pInputText [(ngModel)]="entity.name">
+                    <label for="txtName">Nome</label>
+                </span>
+            </div>
+            <p-button label="Salvar"  type="submit" icon="pi pi-check" iconPos="right"></p-button>
+        </div>
+    </form>
+</div>

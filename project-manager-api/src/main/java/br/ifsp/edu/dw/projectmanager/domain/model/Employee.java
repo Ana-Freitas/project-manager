@@ -42,9 +42,9 @@ public class Employee {
 	@JoinColumn(name = "sectors")
 	private Sector sector;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "project_employee", joinColumns = @JoinColumn(name = "employee"))
-	private List<ProjectEmployee> alocations;
+	//@OneToMany(fetch = FetchType.EAGER)
+	//@JoinTable(name = "project_employee", joinColumns = @JoinColumn(name = "employee"))
+	//private List<ProjectEmployee> alocations;
 	
 	private BigDecimal salary;
 	private Boolean active;
@@ -89,12 +89,12 @@ public class Employee {
 		this.sector = sector;
 	}
 	
-	public List<ProjectEmployee> getAlocations() {
+	/*public List<ProjectEmployee> getAlocations() {
 		return alocations;
 	}
 	public void setAlocations(List<ProjectEmployee> alocations) {
 		this.alocations = alocations;
-	}
+	}*/
 	@Override
 	public int hashCode() {
 		return Objects.hash(code);
