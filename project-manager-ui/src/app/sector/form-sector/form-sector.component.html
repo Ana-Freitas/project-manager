@@ -2,7 +2,7 @@
     <form #f="ngForm" autocomplete="off" (ngSubmit)="save(f)">
         <div class="p-grid">
             <div class="p-col-12">
-                <h1>{{ isEdition() ? "Editar" : "Novo"}} Grupo</h1>
+                <h1>{{ isEdition() ? "Editar" : "Novo"}} Setor</h1>
             </div>
             <div>
                 <span class="p-float-label">
@@ -17,7 +17,7 @@
                 </span>
             </div>
             <p-button label="Salvar"  type="submit" icon="pi pi-check" iconPos="right"></p-button>
-            <button pButton class="p-button-secondary" id="reset-button" label="Novo" (click)="newGroup(f)"></button>
+            <button pButton class="p-button-secondary" id="reset-button" label="Novo" (click)="newSector(f)"></button>
         </div>
     </form>
 </div>

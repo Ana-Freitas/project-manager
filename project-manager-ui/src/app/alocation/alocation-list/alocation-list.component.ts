@@ -1,18 +1,18 @@
 import { Component, OnInit } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
-import { GroupService } from "../group.service";
+import { AlocationService } from "../alocation.service";
 
 @Component({
-    selector: 'app-group-list',
-    templateUrl: './group-list.component.html',
-    styleUrls: ['./group-list.component.css']
+    selector: 'app-alocation-list',
+    templateUrl: './alocation-list.component.html',
+    styleUrls: ['./alocation-list.component.css']
 })
 
-export class GroupListComponent implements OnInit {
+export class AlocationListComponent implements OnInit {
 
-    groups = [];
+    alocations = [];
 
-    constructor(private groupService: GroupService,
+    constructor(private alocationService: AlocationService,
         private confirmation: ConfirmationService,
         private messageService: MessageService) { }
 
@@ -21,30 +21,30 @@ export class GroupListComponent implements OnInit {
     }
 
     search(): void {
-        this.groupService.search()
+        this.alocationService.search()
             .then((result: any) => {
-                this.groups = result;
+                this.alocations = result;
             });
     }
 
-    confirmDeletion(group: any): void {
+    confirmDeletion(alocation: any): void {
         this.confirmation.confirm({
             message: 'Tem certeza que deseja excluir?',
             accept: () => {
-                this.delete(group);
+                this.delete(alocation);
             }
         });
     }
 
 
-    delete(group: any) {
-        this.groupService.delete(group.code)
+    delete(alocation: any) {
+        this.alocationService.delete(alocation.code)
             .then(() => {
                 this.search();
                 this.messageService.add({
                     severity: 'success',
                     summary: 'Excluído',
-                    detail: 'Grupo excluído com sucesso!'
+                    detail: 'Alocação excluída com sucesso!'
                 });
             })
     }

@@ -1,0 +1,46 @@
+<div class="container">
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="save(f)">
+        <div class="p-grid">
+            <div class="p-col-12">
+                <h1>{{ isEdition() ? "Editar" : "Novo"}} Funcionário</h1>
+            </div>
+            <div>
+                <span class="p-float-label">
+                    <input id="txtId" name="txtId" type="text" pInputText [(ngModel)]="entity.code" [disabled]="!isEdition()">
+                    <label for="txtId">Código</label>
+                </span>
+            </div>
+            <div>
+                <span class="p-float-label">
+                    <input id="txtName" name="txtName" type="text" pInputText [(ngModel)]="entity.name" required minlength="3" maxlength="50">
+                    <label for="txtName">Nome</label>
+                </span>
+            </div>
+            <div>
+                <span class="p-float-label">
+                    <input id="txtCpf" name="txtCpf" type="text" pInputText [(ngModel)]="entity.cpf" mask="000.000.000-00" required minlength="11">
+                    <label for="txtCpf">CPF</label>
+                </span>
+            </div>
+            <div>
+                <span class="p-float-label">
+                    <input id="txtSalary" name="txtSalary" type="text" 
+                    [options]="{ prefix: 'R$', thousands: '.', decimal: ',', allowNegative: false }"
+                    currencyMask pInputText [(ngModel)]="entity.salary">
+                    <label for="txtSalary">Salário</label>
+                </span>
+            </div>
+
+            <div>
+                <p-dropdown name="group" [options]="groups" optionLabel="name" optionValue="code" [filter]="true" filterBy="name" placeholder="Grupo" [(ngModel)]="entity.group.code"></p-dropdown>
+            </div>
+
+            <div>
+                <p-dropdown name="sector" [options]="sectors" optionLabel="name" optionValue="code" [filter]="true" filterBy="name" placeholder="Setor" [(ngModel)]="entity.sector.code"></p-dropdown>
+            </div>
+
+            <p-button label="Salvar"  type="submit" icon="pi pi-check" iconPos="right"></p-button>
+            <button pButton class="p-button-secondary" id="reset-button" label="Novo" (click)="newEmployee(f)"></button>
+        </div>
+    </form>
+</div>

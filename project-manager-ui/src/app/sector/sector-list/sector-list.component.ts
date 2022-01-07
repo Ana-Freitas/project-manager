@@ -1,18 +1,18 @@
 import { Component, OnInit } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
-import { GroupService } from "../group.service";
+import { SectorService } from "../sector.service";
 
 @Component({
-    selector: 'app-group-list',
-    templateUrl: './group-list.component.html',
-    styleUrls: ['./group-list.component.css']
+    selector: 'app-sector-list',
+    templateUrl: './sector-list.component.html',
+    styleUrls: ['./sector-list.component.css']
 })
 
-export class GroupListComponent implements OnInit {
+export class SectorListComponent implements OnInit {
 
-    groups = [];
+    sectors = [];
 
-    constructor(private groupService: GroupService,
+    constructor(private sectorService: SectorService,
         private confirmation: ConfirmationService,
         private messageService: MessageService) { }
 
@@ -21,30 +21,30 @@ export class GroupListComponent implements OnInit {
     }
 
     search(): void {
-        this.groupService.search()
+        this.sectorService.search()
             .then((result: any) => {
-                this.groups = result;
+                this.sectors = result;
             });
     }
 
-    confirmDeletion(group: any): void {
+    confirmDeletion(sector: any): void {
         this.confirmation.confirm({
             message: 'Tem certeza que deseja excluir?',
             accept: () => {
-                this.delete(group);
+                this.delete(sector);
             }
         });
     }
 
 
-    delete(group: any) {
-        this.groupService.delete(group.code)
+    delete(sector: any) {
+        this.sectorService.delete(sector.code)
             .then(() => {
                 this.search();
                 this.messageService.add({
                     severity: 'success',
                     summary: 'Excluído',
-                    detail: 'Grupo excluído com sucesso!'
+                    detail: 'Setor excluído com sucesso!'
                 });
             })
     }

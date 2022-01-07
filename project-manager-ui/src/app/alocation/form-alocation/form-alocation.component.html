@@ -1,0 +1,38 @@
+<div class="container">
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="save(f)">
+        <div class="p-grid">
+            <div class="p-col-12">
+                <h1>{{ isEdition() ? "Editar" : "Nova"}} Alocação</h1>
+            </div>
+            <div>
+                <span class="p-float-label">
+                    <input id="txtId" name="txtId" type="text" pInputText [(ngModel)]="entity.code" [disabled]="!isEdition()">
+                    <label for="txtId">Código</label>
+                </span>
+            </div>
+            <div>
+                <p-dropdown name="employee" [options]="employees" optionLabel="name" optionValue="code" [filter]="true" filterBy="name" placeholder="Funcionário" [(ngModel)]="entity.employee.code"></p-dropdown>
+            </div>
+            <div>
+                <p-dropdown name="project" [options]="projects" optionLabel="name" optionValue="code" [filter]="true" filterBy="name" placeholder="Projetos" [(ngModel)]="entity.project.code"></p-dropdown>
+            </div>
+            <div>
+                <span class="p-float-label">
+                    <input id="txtWorkload" name="txtWorkload" type="number" pInputText [(ngModel)]="entity.code">
+                    <label for="txtWorkload">Carga Horária</label>
+                </span>
+            </div>
+            <div>
+                <label>Início de Participação</label>
+                <p-calendar name="startParticipation" dateFormat="dd/mm/yy" [(ngModel)]="entity.startParticipation"></p-calendar>
+            </div>
+            <div>
+                <label>Fim de Participação</label>
+                <p-calendar name="endParticipation" dateFormat="dd/mm/yy" [(ngModel)]="entity.endParticipation"></p-calendar>
+            </div>
+
+            <p-button label="Salvar"  type="submit" icon="pi pi-check" iconPos="right"></p-button>
+            <button pButton class="p-button-secondary" id="reset-button" label="Novo" (click)="newAlocation(f)"></button>
+        </div>
+    </form>
+</div>

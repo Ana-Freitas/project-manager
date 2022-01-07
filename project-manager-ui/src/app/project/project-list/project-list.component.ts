@@ -1,18 +1,18 @@
 import { Component, OnInit } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
-import { GroupService } from "../group.service";
+import { ProjectService } from "../project.service";
 
 @Component({
-    selector: 'app-group-list',
-    templateUrl: './group-list.component.html',
-    styleUrls: ['./group-list.component.css']
+    selector: 'app-project-list',
+    templateUrl: './project-list.component.html',
+    styleUrls: ['./project-list.component.css']
 })
 
-export class GroupListComponent implements OnInit {
+export class ProjectListComponent implements OnInit {
 
-    groups = [];
+    projects = [];
 
-    constructor(private groupService: GroupService,
+    constructor(private projectService: ProjectService,
         private confirmation: ConfirmationService,
         private messageService: MessageService) { }
 
@@ -21,30 +21,30 @@ export class GroupListComponent implements OnInit {
     }
 
     search(): void {
-        this.groupService.search()
+        this.projectService.search()
             .then((result: any) => {
-                this.groups = result;
+                this.projects = result;
             });
     }
 
-    confirmDeletion(group: any): void {
+    confirmDeletion(project: any): void {
         this.confirmation.confirm({
             message: 'Tem certeza que deseja excluir?',
             accept: () => {
-                this.delete(group);
+                this.delete(project);
             }
         });
     }
 
 
-    delete(group: any) {
-        this.groupService.delete(group.code)
+    delete(project: any) {
+        this.projectService.delete(project.code)
             .then(() => {
                 this.search();
                 this.messageService.add({
                     severity: 'success',
-                    summary: 'Excluído',
-                    detail: 'Grupo excluído com sucesso!'
+                    summary: 'Inativado',
+                    detail: 'Projeto inativado com sucesso!'
                 });
             })
     }

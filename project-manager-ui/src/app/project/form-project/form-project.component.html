@@ -1,0 +1,42 @@
+<div class="container">
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="save(f)">
+        <div class="p-grid">
+            <div class="p-col-12">
+                <h1>{{ isEdition() ? "Editar" : "Novo"}} Projeto</h1>
+            </div>
+            <div>
+                <span class="p-float-label">
+                    <input id="txtId" name="txtId" type="text" pInputText [(ngModel)]="entity.code" [disabled]="!isEdition()">
+                    <label for="txtId">Código</label>
+                </span>
+            </div>
+            <div>
+                <span class="p-float-label">
+                    <input id="txtName" name="txtName" type="text" pInputText [(ngModel)]="entity.name" required minlength="3" maxlength="50" required>
+                    <label for="txtName">Nome</label>
+                </span>
+            </div>
+            <div>
+                <span class="p-float-label">
+                    <input id="txtDescription" name="txtDescription" type="text" pInputText [(ngModel)]="entity.description" required minlength="3" maxlength="100">
+                    <label for="txtDescription">Descrição</label>
+                </span>
+            </div>
+            <div>
+                <label>Data de Início</label>
+                <p-calendar name="startDate" dateFormat="dd/mm/yy" [(ngModel)]="entity.startDate"></p-calendar>
+            </div>
+            <div>
+                <label>Data Final</label>
+                <p-calendar name="endDate" dateFormat="dd/mm/yy" [(ngModel)]="entity.endDate"></p-calendar>
+            </div>
+
+            <div>
+                <p-dropdown name="sector" [options]="sectors" optionLabel="name" optionValue="code" [filter]="true" filterBy="name" placeholder="Setor" [(ngModel)]="entity.sector.code"></p-dropdown>
+            </div>
+
+            <p-button label="Salvar"  type="submit" icon="pi pi-check" iconPos="right"></p-button>
+            <button pButton class="p-button-secondary" id="reset-button" label="Novo" (click)="newProject(f)"></button>
+        </div>
+    </form>
+</div>

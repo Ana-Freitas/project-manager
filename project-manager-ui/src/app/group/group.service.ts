@@ -19,16 +19,16 @@ export class GroupService {
     return firstValueFrom(this.http.post<Group>(this.groupUrl, Group.toJson(group), { headers }));
   }
 
-  getById(id: number): Promise<Group> {
-    return firstValueFrom(this.http.get<Group>(`${this.groupUrl}/${id}`))
+  getById(code: number): Promise<Group> {
+    return firstValueFrom(this.http.get<Group>(`${this.groupUrl}/${code}`))
   }
 
   search(): Promise<Group[]> {
     return firstValueFrom(this.http.get<Group[]>(`${this.groupUrl}`))
   }
 
-  delete(id: number): Promise<any> {
-    return firstValueFrom(this.http.delete(`${this.groupUrl}/${id}`));
+  delete(code: number): Promise<any> {
+    return firstValueFrom(this.http.delete(`${this.groupUrl}/${code}`));
   }
 
   update(group: Group): Promise<Group> {

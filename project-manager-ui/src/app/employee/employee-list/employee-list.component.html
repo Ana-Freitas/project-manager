@@ -1,40 +1,50 @@
 <div class="container">
     <div class="p-col-12">
-        <h1>Grupos</h1>
+        <h1>Funcionários</h1>
 
         <!-- Verificar botão!!! -->
         <div>
             <div class="p-col-12">
-                <a pButton label="Novo Grupo" routerLink="/group/new" icon="pi pi-plus" iconPos="right"></a>
+                <a pButton label="Novo Funcionário" routerLink="/employee/new" icon="pi pi-plus" iconPos="right"></a>
             </div>
         </div>
 
         <div class="p-grid">
             <div class="p-col-12">
-                <p-table [value]="groups" [responsive]="true">
+                <p-table [value]="employees" [responsive]="true">
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Código</th>
                             <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Salário</th>
                             <th></th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-group>
+                    <ng-template pTemplate="body" let-employee>
                         <tr>
                             <td>
                                 <span class="p-column-title">Id</span>
-                                {{ group.code }}
+                                {{ employee.code }}
                             </td>
                             <td>
                                 <span class="p-column-title">Nome</span>
-                                {{ group.name }}
+                                {{ employee.name }}
+                            </td>
+                            <td>
+                                <span class="p-column-title">CPF</span>
+                                {{ employee.cpf }}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Salário</span>
+                                {{ employee.salary | number:'1.2-2'  }}
                             </td>
 
                             <td class="col-action-content">
                                 <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
-                                    class="p-button-danger" (click)="confirmDeletion(group)">
+                                    class="p-button-danger" (click)="confirmDeletion(employee)">
                                 </button>
-                                <button pButton icon="pi pi-pencil" pToolTip="Editar" tooltipPosition="top" [routerLink]="['/group', group.code]" ></button>
+                                <button pButton icon="pi pi-pencil" pToolTip="Editar" tooltipPosition="top" [routerLink]="['/employee', employee.code]" ></button>
                             </td>
                         </tr>
                     </ng-template>
