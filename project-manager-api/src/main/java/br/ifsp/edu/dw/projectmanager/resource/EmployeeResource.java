@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,9 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ifsp.edu.dw.projectmanager.domain.model.Employee;
-import br.ifsp.edu.dw.projectmanager.domain.model.ProjectEmployee;
 import br.ifsp.edu.dw.projectmanager.repository.EmployeeRepository;
-import br.ifsp.edu.dw.projectmanager.repository.ProjectEmployeeRepository;
 import br.ifsp.edu.dw.projectmanager.service.EmployeeService;
 
 
@@ -32,35 +31,23 @@ public class EmployeeResource {
 	private EmployeeRepository employeeRepository;
 	
 	@Autowired
-	private ProjectEmployeeRepository projEmployeeRepository;
-	
-	@Autowired
 	private EmployeeService employeeService;
 	
 	@GetMapping
+	@PreAuthorize("hasAuthority('ROLE_SEARCH_EMPLOYEE') and #oauth2.hasScope('read')")
 	public List<Employee> employees(){
 		return employeeRepository.findAll();
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
+	@PreAuthorize("hasAuthority('ROLE_SAVE_EMPLOYEE') and #oauth2.hasScope('write')")
 	public Employee create(@Valid @RequestBody Employee employee) {
 		return employeeRepository.save(employee);
 	}
 	
-	@PostMapping("alocate")
-	@ResponseStatus(HttpStatus.CREATED)
-	public ProjectEmployee alocateInProject(@Valid @RequestBody ProjectEmployee projemployee) {
-		return employeeService.alocateInProject(projemployee);
-	}
-	/*
-	@PostMapping("{code}/deallocate/project/{project}")
-	@ResponseStatus(HttpStatus.CREATED)
-	public ProjectEmployee deallocateProject(@PathVariable Long code, @PathVariable Long project) {
-		return employeeService.deallocateProject(code, project)
-	}
-	*/
 	@GetMapping("/{code}")
+	@PreAuthorize("hasAuthority('ROLE_SEARCH_EMPLOYEE') and #oauth2.hasScope('read')")
 	public ResponseEntity<Employee> getById(@PathVariable Long code){
 		Optional<Employee> employee = employeeRepository.findById(code);
 		if(employee.isPresent()) {
@@ -70,12 +57,14 @@ public class EmployeeResource {
 	}
 	
 	@DeleteMapping("/{code}")
+	@PreAuthorize("hasAuthority('ROLE_REMOVE_EMPLOYEE') and #oauth2.hasScope('write')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remove(@PathVariable Long code) {
 		employeeRepository.deleteById(code);
 	}
 	
 	@PutMapping("/{code}")
+	@PreAuthorize("hasAuthority('ROLE_SAVE_EMPLOYEE') and #oauth2.hasScope('write')")
 	public ResponseEntity<Employee> update(@PathVariable Long code, @RequestBody Employee employee) {
 		Employee saved = employeeService.update(code, employee);
 		return ResponseEntity.ok(saved);
