@@ -98,9 +98,9 @@ INSERT INTO project_employee (workload,manager,project,employee,start_participat
 INSERT INTO project_employee (workload,manager,project,employee,start_participation,end_participation) VALUES (180,1,4,5,'2022-08-16', '2022-12-01');
 
 -- USERS
-INSERT INTO `users` VALUES(1, 'Admin', 'admin@ifsp.edu.br', '123456'); 
-INSERT INTO `users` VALUES(2, 'Ana Freitas', 'ana.ruas@ifsp.edu.br', '123456'); 
-INSERT INTO `users` VALUES(3, 'Vinícius N.', 'vinicius.np@ifsp.edu.br', '123456'); 
+INSERT INTO `users` VALUES(1, 'Admin', 'admin@ifsp.edu.br', '$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.'); 
+INSERT INTO `users` VALUES(2, 'Ana Freitas', 'ana.ruas@ifsp.edu.br', '$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.'); 
+INSERT INTO `users` VALUES(3, 'Vinícius N.', 'vinicius.np@ifsp.edu.br', '$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.'); 
 
 -- PERMISSIONS
 INSERT INTO permissions (`code`, `description`) VALUES (1, 'ROLE_SAVE_USERS');
