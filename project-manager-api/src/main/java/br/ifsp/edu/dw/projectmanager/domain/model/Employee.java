@@ -31,7 +31,7 @@ public class Employee {
 	private String cpf;
 	
 	@ManyToOne
-	@JoinColumn(name = "groups")
+	@JoinColumn(name = "`group`")
 	private Group group;
 	
 	@ManyToOne

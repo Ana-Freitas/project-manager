@@ -34,10 +34,10 @@ CREATE TABLE employees (
     `name` VARCHAR(50) NOT NULL,
     cpf VARCHAR(14) NOT NULL,
     salary DECIMAL(10,2),
-    `groups` BIGINT(20),
+    `group` BIGINT(20),
     sector BIGINT(20),
     `active` TINYINT DEFAULT 0,
-    FOREIGN KEY (`groups`) REFERENCES `groups`(`code`),
+    FOREIGN KEY (`group`) REFERENCES `groups`(`code`),
     FOREIGN KEY (sector) REFERENCES sectors(`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -78,11 +78,11 @@ INSERT INTO `groups` VALUES(4, 'Dev. Mobile');
 INSERT INTO `groups` VALUES(5, 'Administrativo');
 
 -- employees
-INSERT INTO employees (`name`,cpf,salary,`groups`,sector,`active`) VALUES ("Adalberto Roxo",'58671365409',10621.55,4,1,1);
-INSERT INTO employees (`name`,cpf,salary,`groups`,sector,`active`) VALUES ("Roberto Selmi Dei",'87807791233',4850,3,1,1);
-INSERT INTO employees (`name`,cpf,salary,`groups`,sector,`active`) VALUES ("Geraldo do Carmo",'74681610704',7297,2,2,1);
-INSERT INTO employees (`name`,cpf,salary,`groups`,sector,`active`) VALUES ("Rafaela Amoroso Micelli",'26454915450',8000,1,1,1);
-INSERT INTO employees (`name`,cpf,salary,`groups`,sector,`active`) VALUES ("José Xavier Martinez",'43452858448',2500,5,4,0);
+INSERT INTO employees (`name`,cpf,salary,`group`,sector,`active`) VALUES ("Adalberto Roxo",'58671365409',10621.55,4,1,1);
+INSERT INTO employees (`name`,cpf,salary,`group`,sector,`active`) VALUES ("Roberto Selmi Dei",'87807791233',4850,3,1,1);
+INSERT INTO employees (`name`,cpf,salary,`group`,sector,`active`) VALUES ("Geraldo do Carmo",'74681610704',7297,2,2,1);
+INSERT INTO employees (`name`,cpf,salary,`group`,sector,`active`) VALUES ("Rafaela Amoroso Micelli",'26454915450',8000,1,1,1);
+INSERT INTO employees (`name`,cpf,salary,`group`,sector,`active`) VALUES ("José Xavier Martinez",'43452858448',2500,5,4,0);
 
 -- projects
 INSERT INTO projects (`name`,`description`,start_date,end_date,sector,`active`) VALUES ("Disma","Aplicativo de geolocalização",'2020-02-01', '2023-02-01',1,1);
