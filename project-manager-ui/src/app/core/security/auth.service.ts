@@ -90,4 +90,10 @@ export class AuthService {
 
     return !token || this.jwtHelper.isTokenExpired(token);
   }
+
+  
+  clearAccessToken(): void {
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
+  }
 }

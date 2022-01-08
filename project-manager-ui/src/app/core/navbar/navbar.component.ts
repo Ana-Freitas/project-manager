@@ -1,4 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ErrorHandlerService } from '../error-handler.service';
+import { AuthService } from '../security/auth.service';
+import { LogoutService } from '../security/logout.service';
 
 @Component({
   selector: 'app-navbar',
@@ -45,15 +49,26 @@ export class NavbarComponent implements OnInit {
   },
   {
     label: 'Sair',
-    routerLink: ['/login'],
+    command: () => this.logout(),
+    // routerLink: ['/login'],
     icon: 'pi pi-fw pi-power-off'
   }
   ];
 
-  constructor() { }
+  constructor(public auth: AuthService,
+    private logoutService: LogoutService,
+    private errorHandler: ErrorHandlerService,
+    private router: Router) { }
 
   @Input() hiddenMenu: boolean = false;
   ngOnInit(): void {
   }
 
+  logout(): void {
+    this.logoutService.logout()
+      .then(() => {
+        this.router.navigate(['/login']);
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { EmployeeService } from "../employee.service";
 
@@ -14,10 +15,15 @@ export class EmployeeListComponent implements OnInit {
 
     constructor(private employeeService: EmployeeService,
         private confirmation: ConfirmationService,
-        private messageService: MessageService) { }
+        private messageService: MessageService,
+        private router: Router) { }
 
     ngOnInit(): void {
         this.search();
+    }
+
+    openAddEmployee() {
+        this.router.navigate(['/employee/new']);
     }
 
     search(): void {

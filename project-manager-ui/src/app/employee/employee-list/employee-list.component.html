@@ -5,10 +5,10 @@
         <!-- Verificar botão!!! -->
         <div>
             <div class="p-col-12">
-                <button pButton label="Novo Funcionário" routerLink="/employee/new" icon="pi pi-plus" iconPos="right"></button>
+                <button  pButton label="Novo Funcionário" routerLink="/employee/new" icon="pi pi-plus" iconPos="right" (click)="openAddEmployee()"></button>
             </div>
         </div>
-        
+
         <div class="p-grid">    
             <div class="p-col-12">
                 <p-table [value]="employees" [responsive]="true">

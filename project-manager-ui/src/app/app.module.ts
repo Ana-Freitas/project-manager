@@ -45,6 +45,10 @@ import { AuthService } from './core/security/auth.service';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ErrorHandlerService } from '../app/core/error-handler.service';
+import { AuthGuard } from './core/security/auth.guard';
+import { NotAuthorizedComponent } from './core/not-authorized.component';
+import { PageNotFoundComponent } from './core/page-not-found.component';
+import { LogoutService } from './core/security/logout.service';
 
 registerLocaleData(localePt);
 
@@ -68,6 +72,7 @@ const routes: Routes = [
   { path: '**', redirectTo: 'group' }
 ];
 
+
 export function tokenGetter(): any {
   return localStorage.getItem('token');
 }
@@ -87,7 +92,9 @@ export function tokenGetter(): any {
     AlocationListComponent,
     MenuComponent,
     NavbarComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    NotAuthorizedComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -129,6 +136,8 @@ export function tokenGetter(): any {
     AuthService,
     JwtHelperService,
     ErrorHandlerService,
+    LogoutService,
+    AuthGuard,
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: ProjectHttpInterceptor,
