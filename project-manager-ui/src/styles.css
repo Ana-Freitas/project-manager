@@ -3,6 +3,7 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   color: #404C51;
+  background-image: url('../src/assets/imgs/background.jpg');
 }
 
 @media (min-width: 1200px) {
@@ -15,3 +16,8 @@ body {
 .col-action-content .p-button {
     margin: 3px;
 }
+
+.field-code {
+  width:20px;
+}
+

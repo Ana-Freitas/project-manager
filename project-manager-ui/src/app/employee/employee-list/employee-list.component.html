@@ -5,11 +5,11 @@
         <!-- Verificar botão!!! -->
         <div>
             <div class="p-col-12">
-                <a pButton label="Novo Funcionário" routerLink="/employee/new" icon="pi pi-plus" iconPos="right"></a>
+                <button pButton label="Novo Funcionário" routerLink="/employee/new" icon="pi pi-plus" iconPos="right"></button>
             </div>
         </div>
-
-        <div class="p-grid">
+        
+        <div class="p-grid">    
             <div class="p-col-12">
                 <p-table [value]="employees" [responsive]="true">
                     <ng-template pTemplate="header">
@@ -37,7 +37,7 @@
                             </td>
                             <td>
                                 <span class="p-column-title">Salário</span>
-                                {{ employee.salary | number:'1.2-2'  }}
+                                R$ {{ employee.salary | number:'1.2-2'  }}
                             </td>
 
                             <td class="col-action-content">

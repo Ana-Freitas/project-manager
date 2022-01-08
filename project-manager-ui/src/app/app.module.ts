@@ -1,11 +1,11 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { FormGroupComponent } from './group/form-group/form-group.component';
 import { FormsModule } from '@angular/forms';
-import {InputTextModule} from 'primeng/inputtext';
+import { InputTextModule } from 'primeng/inputtext';
 import { ExamplesModule } from './examples/examples.module';
 import { ButtonModule } from 'primeng/button';
 import { GroupService } from './group/group.service';
@@ -23,7 +23,6 @@ import { SectorListComponent } from './sector/sector-list/sector-list.component'
 import { FormEmployeeComponent } from './employee/form-employee/form-employee.component';
 import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
 import { EmployeeService } from './employee/employee.service';
-import { NgxMaskModule } from 'ngx-mask';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { DropdownModule } from 'primeng/dropdown';
 import localePt from '@angular/common/locales/pt';
@@ -34,28 +33,44 @@ import { ProjectListComponent } from './project/project-list/project-list.compon
 import { ProjectService } from './project/project.service';
 import { AlocationListComponent } from './alocation/alocation-list/alocation-list.component';
 import { FormAlocationComponent } from './alocation/form-alocation/form-alocation.component';
+import { MenuModule } from 'primeng/menu';
+import { MenuComponent } from './core/menu/menu.component';
+import { NavbarComponent } from './core/navbar/navbar.component';
+import { InputMaskModule } from 'primeng/inputmask';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { MenubarModule } from 'primeng/menubar';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { AuthService } from './core/security/auth.service';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ErrorHandlerService } from '../app/core/error-handler.service';
 
 registerLocaleData(localePt);
 
 const routes: Routes = [
-  { path: 'group', component: GroupListComponent},
+  { path: 'group', component: GroupListComponent },
   { path: 'group/new', component: FormGroupComponent },
-  { path: 'group/:code', component: FormGroupComponent},
-  { path: 'sector', component: SectorListComponent},
+  { path: 'group/:code', component: FormGroupComponent },
+  { path: 'sector', component: SectorListComponent },
   { path: 'sector/new', component: FormSectorComponent },
-  { path: 'sector/:code', component: FormSectorComponent},
-  { path: 'employee', component: EmployeeListComponent},
+  { path: 'sector/:code', component: FormSectorComponent },
+  { path: 'employee', component: EmployeeListComponent },
   { path: 'employee/new', component: FormEmployeeComponent },
-  { path: 'employee/:code', component: FormEmployeeComponent},
-  { path: 'project', component: ProjectListComponent},
+  { path: 'employee/:code', component: FormEmployeeComponent },
+  { path: 'project', component: ProjectListComponent },
   { path: 'project/new', component: FormProjectComponent },
-  { path: 'project/:code', component: FormProjectComponent},
-  { path: 'alocation', component: AlocationListComponent},
+  { path: 'project/:code', component: FormProjectComponent },
+  { path: 'alocation', component: AlocationListComponent },
   { path: 'alocation/new', component: FormAlocationComponent },
-  { path: 'alocation/:code', component: FormAlocationComponent},
+  { path: 'alocation/:code', component: FormAlocationComponent },
+  { path: 'login', component: LoginFormComponent },
   { path: '**', redirectTo: 'group' }
 ];
 
+export function tokenGetter(): any {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -69,10 +84,12 @@ const routes: Routes = [
     FormProjectComponent,
     ProjectListComponent,
     FormAlocationComponent,
-    AlocationListComponent
+    AlocationListComponent,
+    MenuComponent,
+    NavbarComponent,
+    LoginFormComponent
   ],
   imports: [
-    NgxMaskModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -87,10 +104,37 @@ const routes: Routes = [
     ConfirmDialogModule,
     CurrencyMaskModule,
     DropdownModule,
-    CalendarModule
+    CalendarModule,
+    MenuModule,
+    InputMaskModule,
+    InputTextareaModule,
+    InputSwitchModule,
+    MenubarModule,
+    AutoCompleteModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        allowedDomains: ['localhost:8080'],
+        disallowedRoutes: ['http://localhost:8080/oauth/token']
+      }
+    }),
   ],
-  providers: [GroupService, SectorService, ProjectService, EmployeeService, MessageService, ConfirmationService,
-    { provide: LOCALE_ID, useValue: 'pt-BR'},],
+  providers: [
+    GroupService,
+    SectorService,
+    ProjectService, 
+    EmployeeService, 
+    MessageService, 
+    ConfirmationService,
+    AuthService,
+    JwtHelperService,
+    ErrorHandlerService,
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: ProjectHttpInterceptor,
+    //   multi: true
+    // },
+    { provide: LOCALE_ID, useValue: 'pt-BR' },],
 
   bootstrap: [AppComponent]
 })

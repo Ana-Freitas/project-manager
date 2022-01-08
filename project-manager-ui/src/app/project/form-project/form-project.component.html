@@ -4,35 +4,43 @@
             <div class="p-col-12">
                 <h1>{{ isEdition() ? "Editar" : "Novo"}} Projeto</h1>
             </div>
-            <div>
+            <div class="p-col-12 p-md-9 p-fluid">
                 <span class="p-float-label">
                     <input id="txtId" name="txtId" type="text" pInputText [(ngModel)]="entity.code" [disabled]="!isEdition()">
                     <label for="txtId">Código</label>
                 </span>
             </div>
-            <div>
+            <div class="p-col-12 p-md-9 p-fluid">
                 <span class="p-float-label">
                     <input id="txtName" name="txtName" type="text" pInputText [(ngModel)]="entity.name" required minlength="3" maxlength="50" required>
                     <label for="txtName">Nome</label>
                 </span>
             </div>
-            <div>
+
+            <div class="p-col-12 p-md-9 p-fluid">
                 <span class="p-float-label">
-                    <input id="txtDescription" name="txtDescription" type="text" pInputText [(ngModel)]="entity.description" required minlength="3" maxlength="100">
+                    <textarea name="txtDescription" inputId="txtDescription" rows="3" style="resize: none;" cols="30" [(ngModel)]="entity.description" pInputTextarea minlength="3" maxlength="100"></textarea>
                     <label for="txtDescription">Descrição</label>
                 </span>
             </div>
-            <div>
-                <label>Data de Início</label>
-                <p-calendar name="startDate" dateFormat="dd/mm/yy" [(ngModel)]="entity.startDate"></p-calendar>
+            <label for="txtStartDate">Data de Início</label>
+            <div class="p-col-12 p-md-9 p-fluid">
+                <p-calendar id="txtStartDate" name="startDate" dateFormat="dd/mm/yy" [(ngModel)]="entity.startDate"></p-calendar>
             </div>
-            <div>
-                <label>Data Final</label>
-                <p-calendar name="endDate" dateFormat="dd/mm/yy" [(ngModel)]="entity.endDate"></p-calendar>
+            <label for="txtEndDate">Data Final</label>
+            <div class="p-col-12 p-md-9 p-fluid">
+                <p-calendar id="txtEndDate" name="endDate" dateFormat="dd/mm/yy" [(ngModel)]="entity.endDate"></p-calendar>
             </div>
 
-            <div>
-                <p-dropdown name="sector" [options]="sectors" optionLabel="name" optionValue="code" [filter]="true" filterBy="name" placeholder="Setor" [(ngModel)]="entity.sector.code"></p-dropdown>
+            <label for="txtSector">Setor</label>
+            <div class="p-col-12 p-md-9 p-fluid">
+                <p-dropdown id="txtSector" name="sector" [options]="sectors" optionLabel="name" optionValue="code" [filter]="true" filterBy="name" placeholder="Setor" [(ngModel)]="entity.sector.code"></p-dropdown>
+            </div>
+            <label for="txtActive">Ativo</label>
+            <div class="p-col-12 p-md-9 p-fluid">
+                <span>
+                    <p-inputSwitch name="inputActive" [(ngModel)]="entity.active"></p-inputSwitch>
+                </span>
             </div>
 
             <p-button label="Salvar"  type="submit" icon="pi pi-check" iconPos="right"></p-button>

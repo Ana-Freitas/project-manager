@@ -4,13 +4,13 @@
             <div class="p-col-12">
                 <h1>{{ isEdition() ? "Editar" : "Novo"}} Setor</h1>
             </div>
-            <div>
+            <div class="p-col-12 p-md-9 p-fluid">
                 <span class="p-float-label">
                     <input id="txtId" name="txtId" type="text" pInputText [(ngModel)]="entity.code" [disabled]="!isEdition()">
                     <label for="txtId">Código</label>
                 </span>
             </div>
-            <div>
+            <div class="p-col-12 p-md-9 p-fluid"> 
                 <span class="p-float-label">
                     <input id="txtName" name="txtName" type="text" pInputText [(ngModel)]="entity.name" required minlength="3" maxlength="50">
                     <label for="txtName">Nome</label>
