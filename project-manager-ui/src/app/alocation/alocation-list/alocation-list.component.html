@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="p-col-12">
+        <h1>Alocações</h1>
+
+        <!-- Verificar botão!!! -->
+        <div>
+            <div class="p-col-12">
+                <a pButton label="Realizar Alocação" routerLink="/alocation/new" icon="pi pi-plus" iconPos="right"></a>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div class="p-col-12">
+                <p-table [value]="alocations" [responsive]="true">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Código</th>
+                            <th>Funcionário</th>
+                            <th>Projeto</th>
+                            <th>Carga Horária</th>
+                            <th>Gestor</th>
+                            <th>Início Part.</th>
+                            <th>Fim Part.</th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-alocation>
+                        <tr>
+                            <td>
+                                <span class="p-column-title">Id</span>
+                                {{ alocation.code }}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Funcionário</span>
+                                {{ alocation.employee.name }}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Projeto</span>
+                                {{ alocation.project.name }}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Carga Horária</span>
+                                {{ alocation.workload }}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Gestor</span>
+                                {{ alocation.manager }}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Início Part.</span>
+                                {{ alocation.startParticipation }}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Fim Part.</span>
+                                {{ alocation.endParticipation }}
+                            </td>
+                            <td class="col-action-content">
+                                <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                                    class="p-button-danger" (click)="confirmDeletion(alocation)">
+                                </button>
+                                <button pButton icon="pi pi-pencil" pToolTip="Editar" tooltipPosition="top" [routerLink]="['/alocation', alocation.code]" ></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>

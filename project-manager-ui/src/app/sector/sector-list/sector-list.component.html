@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="p-col-12">
+        <h1>Setores</h1>
+
+        <!-- Verificar botão!!! -->
+        <div>
+            <div class="p-col-12">
+                <a pButton label="Novo Setor" routerLink="/sector/new" icon="pi pi-plus" iconPos="right"></a>
+            </div>
+        </div>
+
+        <div class="p-grid">
+            <div class="p-col-12">
+                <p-table [value]="sectors" [responsive]="true">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-sector>
+                        <tr>
+                            <td>
+                                <span class="p-column-title">Código</span>
+                                {{ sector.code }}
+                            </td>
+                            <td>
+                                <span class="p-column-title">Nome</span>
+                                {{ sector.name }}
+                            </td>
+
+                            <td class="col-action-content">
+                                <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                                    class="p-button-danger" (click)="confirmDeletion(sector)">
+                                </button>
+                                <button pButton icon="pi pi-pencil" pToolTip="Editar" tooltipPosition="top" [routerLink]="['/sector', sector.code]" ></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>
