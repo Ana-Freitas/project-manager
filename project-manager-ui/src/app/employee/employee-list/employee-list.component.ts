@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ConfirmationService, MessageService } from "primeng/api";
+import { ErrorHandlerService } from "src/app/core/error-handler.service";
+import { AuthService } from "src/app/core/security/auth.service";
 import { EmployeeService } from "../employee.service";
 
 @Component({
@@ -16,21 +18,19 @@ export class EmployeeListComponent implements OnInit {
     constructor(private employeeService: EmployeeService,
         private confirmation: ConfirmationService,
         private messageService: MessageService,
-        private router: Router) { }
+        public auth: AuthService,
+        private errorHandler: ErrorHandlerService) { }
 
     ngOnInit(): void {
         this.search();
-    }
-
-    openAddEmployee() {
-        this.router.navigate(['/employee/new']);
     }
 
     search(): void {
         this.employeeService.search()
             .then((result: any) => {
                 this.employees = result;
-            });
+            })
+            .catch((erro: any) => this.errorHandler.handle(erro));
     }
 
     confirmDeletion(employee: any): void {
@@ -53,5 +53,6 @@ export class EmployeeListComponent implements OnInit {
                     detail: 'Funcionário excluído com sucesso!'
                 });
             })
+            .catch((erro: any) => this.errorHandler.handle(erro));
     }
 }

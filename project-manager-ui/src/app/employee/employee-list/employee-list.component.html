@@ -5,7 +5,7 @@
         <!-- Verificar botão!!! -->
         <div>
             <div class="p-col-12">
-                <button  pButton label="Novo Funcionário" routerLink="/employee/new" icon="pi pi-plus" iconPos="right" (click)="openAddEmployee()"></button>
+                <button  pButton label="Novo Funcionário" routerLink="/employee/new" icon="pi pi-plus" iconPos="right"></button>
             </div>
         </div>
 
@@ -42,7 +42,7 @@
 
                             <td class="col-action-content">
                                 <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
-                                    class="p-button-danger" (click)="confirmDeletion(employee)">
+                                    class="p-button-danger" (click)="confirmDeletion(employee)"  [disabled]="!auth.hasPermission('ROLE_REMOVE_EMPLOYEE')">
                                 </button>
                                 <button pButton icon="pi pi-pencil" pToolTip="Editar" tooltipPosition="top" [routerLink]="['/employee', employee.code]" ></button>
                             </td>

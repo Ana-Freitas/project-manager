@@ -32,7 +32,7 @@
 
                             <td class="col-action-content">
                                 <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
-                                    class="p-button-danger" (click)="confirmDeletion(sector)">
+                                    class="p-button-danger" (click)="confirmDeletion(sector)" [disabled]="!auth.hasPermission('ROLE_REMOVE_PROJECT')">
                                 </button>
                                 <button pButton icon="pi pi-pencil" pToolTip="Editar" tooltipPosition="top" [routerLink]="['/sector', sector.code]" ></button>
                             </td>

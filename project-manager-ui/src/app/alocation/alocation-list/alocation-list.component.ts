@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
+import { ErrorHandlerService } from "src/app/core/error-handler.service";
+import { AuthService } from "src/app/core/security/auth.service";
 import { AlocationService } from "../alocation.service";
 
 @Component({
@@ -14,7 +16,9 @@ export class AlocationListComponent implements OnInit {
 
     constructor(private alocationService: AlocationService,
         private confirmation: ConfirmationService,
-        private messageService: MessageService) { }
+        private messageService: MessageService,
+        private errorHandler: ErrorHandlerService,
+        public auth: AuthService) { }
 
     ngOnInit(): void {
         this.search();
@@ -24,7 +28,8 @@ export class AlocationListComponent implements OnInit {
         this.alocationService.search()
             .then((result: any) => {
                 this.alocations = result;
-            });
+            })
+            .catch((erro: any) => this.errorHandler.handle(erro));
     }
 
     confirmDeletion(alocation: any): void {
@@ -47,5 +52,6 @@ export class AlocationListComponent implements OnInit {
                     detail: 'Alocação excluída com sucesso!'
                 });
             })
+            .catch((erro: any) => this.errorHandler.handle(erro));
     }
 }

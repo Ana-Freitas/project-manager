@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
+import { ErrorHandlerService } from "src/app/core/error-handler.service";
+import { AuthService } from "src/app/core/security/auth.service";
 import { SectorService } from "../sector.service";
 
 @Component({
@@ -14,7 +16,9 @@ export class SectorListComponent implements OnInit {
 
     constructor(private sectorService: SectorService,
         private confirmation: ConfirmationService,
-        private messageService: MessageService) { }
+        private messageService: MessageService,
+        public auth: AuthService,
+        private errorHandler: ErrorHandlerService) { }
 
     ngOnInit(): void {
         this.search();
@@ -24,7 +28,8 @@ export class SectorListComponent implements OnInit {
         this.sectorService.search()
             .then((result: any) => {
                 this.sectors = result;
-            });
+            })
+            .catch((erro: any) => this.errorHandler.handle(erro));
     }
 
     confirmDeletion(sector: any): void {
@@ -36,7 +41,6 @@ export class SectorListComponent implements OnInit {
         });
     }
 
-
     delete(sector: any) {
         this.sectorService.delete(sector.code)
             .then(() => {
@@ -47,5 +51,6 @@ export class SectorListComponent implements OnInit {
                     detail: 'Setor excluído com sucesso!'
                 });
             })
+            .catch((erro: any) => this.errorHandler.handle(erro));
     }
 }
