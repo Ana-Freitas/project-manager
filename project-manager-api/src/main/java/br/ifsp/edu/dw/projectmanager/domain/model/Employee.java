@@ -37,7 +37,7 @@ public class Employee {
 	@ManyToOne
 	@JoinColumn(name = "sector")
 	private Sector sector;
-	
+  
 	private BigDecimal salary;
 	private Boolean active;
 	
