@@ -49,29 +49,33 @@ import { AuthGuard } from './core/security/auth.guard';
 import { NotAuthorizedComponent } from './core/not-authorized.component';
 import { PageNotFoundComponent } from './core/page-not-found.component';
 import { LogoutService } from './core/security/logout.service';
+import { ProjectHttpInterceptor } from './core/security/project-http-interceptor';
 
 registerLocaleData(localePt);
 
 const routes: Routes = [
-  { path: 'group', component: GroupListComponent },
-  { path: 'group/new', component: FormGroupComponent },
-  { path: 'group/:code', component: FormGroupComponent },
-  { path: 'sector', component: SectorListComponent },
-  { path: 'sector/new', component: FormSectorComponent },
-  { path: 'sector/:code', component: FormSectorComponent },
-  { path: 'employee', component: EmployeeListComponent },
-  { path: 'employee/new', component: FormEmployeeComponent },
-  { path: 'employee/:code', component: FormEmployeeComponent },
-  { path: 'project', component: ProjectListComponent },
-  { path: 'project/new', component: FormProjectComponent },
-  { path: 'project/:code', component: FormProjectComponent },
-  { path: 'alocation', component: AlocationListComponent },
-  { path: 'alocation/new', component: FormAlocationComponent },
-  { path: 'alocation/:code', component: FormAlocationComponent },
+  { path: '', redirectTo: 'employee', pathMatch: 'full' },
+  { path: 'group', component: GroupListComponent, canActivate: [AuthGuard],   data: { roles: ['ROLE_SEARCH_GROUP'] }},
+  { path: 'group/new', component: FormGroupComponent,  canActivate: [AuthGuard], data: { roles: ['ROLE_SAVE_GROUP'] }},
+  { path: 'group/:code', component: FormGroupComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_SEARCH_GROUP'] }},
+  { path: 'sector', component: SectorListComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_SEARCH_SECTOR'] }},
+  { path: 'sector/new', component: FormSectorComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_SAVE_SECTOR'] }},
+  { path: 'sector/:code', component: FormSectorComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_SEARCH_SECTOR'] }},
+  { path: 'employee', component: EmployeeListComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_SEARCH_EMPLOYEE'] }},
+  { path: 'employee/new', component: FormEmployeeComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_SAVE_EMPLOYEE'] }},
+  { path: 'employee/:code', component: FormEmployeeComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_SEARCH_EMPLOYEE']}},
+  { path: 'project', component: ProjectListComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_SEARCH_PROJECT']}},
+  { path: 'project/new', component: FormProjectComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_SAVE_PROJECT']}},
+  { path: 'project/:code', component: FormProjectComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_SEARCH_PROJECT']}},
+  { path: 'alocation', component: AlocationListComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_SEARCH_ALOCATION']}},
+  { path: 'alocation/new', component: FormAlocationComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_SAVE_ALOCATION']}},
+  { path: 'alocation/:code', component: FormAlocationComponent, canActivate: [AuthGuard], data: { roles: ['ROLE_SEARCH_ALOCATION']}},
   { path: 'login', component: LoginFormComponent },
-  { path: '**', redirectTo: 'group' }
+  { path: '', component: LoginFormComponent },
+  { path: 'not-authorized', component: NotAuthorizedComponent },
+  { path: 'page-not-found', component: PageNotFoundComponent },
+  { path: '**', redirectTo: 'employee' }
 ];
-
 
 export function tokenGetter(): any {
   return localStorage.getItem('token');
@@ -138,11 +142,11 @@ export function tokenGetter(): any {
     ErrorHandlerService,
     LogoutService,
     AuthGuard,
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: ProjectHttpInterceptor,
-    //   multi: true
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ProjectHttpInterceptor,
+      multi: true
+    },
     { provide: LOCALE_ID, useValue: 'pt-BR' },],
 
   bootstrap: [AppComponent]
