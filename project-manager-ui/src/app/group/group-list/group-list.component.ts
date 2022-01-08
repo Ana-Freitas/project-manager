@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
+import { ErrorHandlerService } from "src/app/core/error-handler.service";
+import { AuthService } from "src/app/core/security/auth.service";
 import { GroupService } from "../group.service";
 
 @Component({
@@ -14,7 +16,9 @@ export class GroupListComponent implements OnInit {
 
     constructor(private groupService: GroupService,
         private confirmation: ConfirmationService,
-        private messageService: MessageService) { }
+        private messageService: MessageService,
+        public auth: AuthService,
+        private errorHandler: ErrorHandlerService) { }
 
     ngOnInit(): void {
         this.search();
@@ -24,7 +28,8 @@ export class GroupListComponent implements OnInit {
         this.groupService.search()
             .then((result: any) => {
                 this.groups = result;
-            });
+            })
+            .catch((erro: any) => this.errorHandler.handle(erro));
     }
 
     confirmDeletion(group: any): void {
@@ -47,5 +52,6 @@ export class GroupListComponent implements OnInit {
                     detail: 'Grupo excluído com sucesso!'
                 });
             })
+            .catch((erro: any) => this.errorHandler.handle(erro));
     }
 }

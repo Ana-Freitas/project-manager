@@ -56,7 +56,8 @@
                             </td>
                             <td class="col-action-content">
                                 <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
-                                    class="p-button-danger" (click)="confirmDeletion(alocation)">
+                                    class="p-button-danger" (click)="confirmDeletion(alocation)"
+                                    [disabled]="!auth.hasPermission('ROLE_REMOVE_ALOCATION')">
                                 </button>
                                 <button pButton icon="pi pi-pencil" pToolTip="Editar" tooltipPosition="top" [routerLink]="['/alocation', alocation.code]" ></button>
                             </td>
