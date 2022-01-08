@@ -34,7 +34,8 @@ public class ProjectResource {
 	
 	@GetMapping
 	public List<Project> projects(){
-		return projectRepository.findAll();
+		List<Project> projects = projectRepository.findAll();
+		return projects;
 	}
 	
 	@PostMapping

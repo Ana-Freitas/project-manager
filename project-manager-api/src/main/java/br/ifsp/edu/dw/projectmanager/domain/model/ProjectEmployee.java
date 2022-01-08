@@ -33,12 +33,8 @@ public class ProjectEmployee {
 	private LocalDate endParticipation;
 	
 	@ManyToOne
-	@JoinColumn(name = "employees")
+	@JoinColumn(name = "employee")
 	private Employee employee;
-	
-	@ManyToOne
-	@JoinColumn(name = "projects")
-	private User project;
 	
 	public Integer getWorkload() {
 		return workload;
@@ -71,15 +67,11 @@ public class ProjectEmployee {
 	public Employee getEmployee() {
 		return employee;
 	}
+	
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	public User getProject() {
-		return project;
-	}
-	public void setProject(User project) {
-		this.project = project;
-	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(code);

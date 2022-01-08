@@ -6,18 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.ifsp.edu.dw.projectmanager.domain.model.Employee;
-import br.ifsp.edu.dw.projectmanager.domain.model.ProjectEmployee;
 import br.ifsp.edu.dw.projectmanager.repository.EmployeeRepository;
-import br.ifsp.edu.dw.projectmanager.repository.ProjectEmployeeRepository;
 
 @Service
 public class EmployeeService {
 	
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	
-	@Autowired
-	private ProjectEmployeeRepository projEmployeeRepository;
 	
 	public Employee update(Long code, Employee employee) {
 		Employee saved = get(code);
@@ -28,21 +23,4 @@ public class EmployeeService {
 	public Employee get(Long code) {
 		return employeeRepository.findById(code).orElseThrow();
 	}
-
-	public ProjectEmployee alocateInProject(ProjectEmployee projemployee) {
-		Employee employee = get(projemployee.getEmployee().getCode());
-		return projEmployeeRepository.save(projemployee);
-	}
-
-	/*
-	public ProjectEmployee deallocateProject(ProjectEmployee projemployee) {
-		Employee employee = get(user);
-		List<ProjectEmployee> alocations = employee.getAlocations();
-		Optional<ProjectEmployee> alocation = alocations.stream().filter(x -> x.getProject().getCode() == project).findFirst();
-		if(alocation.isPresent()) {
-			alocation.get().setEndParticipation(LocalDate.now());
-			return alocation.get(); 
-		}
-		return null;
-	}*/
 }

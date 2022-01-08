@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ifsp.edu.dw.projectmanager.domain.model.Employee;
-import br.ifsp.edu.dw.projectmanager.domain.model.ProjectEmployee;
 import br.ifsp.edu.dw.projectmanager.repository.EmployeeRepository;
-import br.ifsp.edu.dw.projectmanager.repository.ProjectEmployeeRepository;
 import br.ifsp.edu.dw.projectmanager.service.EmployeeService;
 
 
@@ -30,9 +28,6 @@ import br.ifsp.edu.dw.projectmanager.service.EmployeeService;
 public class EmployeeResource {
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	
-	@Autowired
-	private ProjectEmployeeRepository projEmployeeRepository;
 	
 	@Autowired
 	private EmployeeService employeeService;
@@ -48,18 +43,6 @@ public class EmployeeResource {
 		return employeeRepository.save(employee);
 	}
 	
-	@PostMapping("alocate")
-	@ResponseStatus(HttpStatus.CREATED)
-	public ProjectEmployee alocateInProject(@Valid @RequestBody ProjectEmployee projemployee) {
-		return employeeService.alocateInProject(projemployee);
-	}
-	/*
-	@PostMapping("{code}/deallocate/project/{project}")
-	@ResponseStatus(HttpStatus.CREATED)
-	public ProjectEmployee deallocateProject(@PathVariable Long code, @PathVariable Long project) {
-		return employeeService.deallocateProject(code, project)
-	}
-	*/
 	@GetMapping("/{code}")
 	public ResponseEntity<Employee> getById(@PathVariable Long code){
 		Optional<Employee> employee = employeeRepository.findById(code);

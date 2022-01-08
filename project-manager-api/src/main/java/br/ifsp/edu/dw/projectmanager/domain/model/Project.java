@@ -1,10 +1,12 @@
 package br.ifsp.edu.dw.projectmanager.domain.model;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
@@ -12,6 +14,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -42,8 +46,12 @@ public class Project {
 	private Boolean active;
 	
 	@ManyToOne
-	@JoinColumn(name = "sectors")
+	@JoinColumn(name = "sector")
 	private Sector sector;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "project_employee", joinColumns = @JoinColumn(name = "project"),inverseJoinColumns = @JoinColumn(name = "code"))
+	private List<ProjectEmployee> projectEmployees;
 	
 	public String getDescription() {
 		return description;
@@ -84,12 +92,20 @@ public class Project {
 	public void setSector(Sector sector) {
 		this.sector = sector;
 	}
-
+	
+	public List<ProjectEmployee> getProjectEmployees() {
+		return projectEmployees;
+	}
+	
+	public void setProjectEmployees(List<ProjectEmployee> projectEmployees) {
+		this.projectEmployees = projectEmployees;
+	}
 	
 	@Override
 	public int hashCode() {
 		return Objects.hash(code);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
