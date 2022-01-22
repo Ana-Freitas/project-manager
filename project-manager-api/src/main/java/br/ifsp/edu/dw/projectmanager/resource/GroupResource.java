@@ -34,20 +34,20 @@ public class GroupResource {
 	private GroupService groupService;
 	
 	@GetMapping
-	@PreAuthorize("hasAuthority('ROLE_SEARCH_GROUPS') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ROLE_SEARCH_GROUP') and #oauth2.hasScope('read')")
 	public List<Group> groups(){
 		return groupRepository.findAll();
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	@PreAuthorize("hasAuthority('ROLE_SAVE_GROUPS') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_SAVE_GROUP') and #oauth2.hasScope('write')")
 	public Group create(@Valid @RequestBody Group group) {
 		return groupRepository.save(group);
 	}
 	
 	@GetMapping("/{code}")
-	@PreAuthorize("hasAuthority('ROLE_SEARCH_GROUPS') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ROLE_SEARCH_GROUP') and #oauth2.hasScope('read')")
 	public ResponseEntity<Group> getById(@PathVariable Long code){
 		Optional<Group> group = groupRepository.findById(code);
 		if(group.isPresent()) {
@@ -58,13 +58,13 @@ public class GroupResource {
 	
 	@DeleteMapping("/{code}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@PreAuthorize("hasAuthority('ROLE_REMOVE_GROUPS') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_REMOVE_GROUP') and #oauth2.hasScope('write')")
 	public void remove(@PathVariable Long code) {
 		groupRepository.deleteById(code);
 	}
 	
 	@PutMapping("/{code}")
-	@PreAuthorize("hasAuthority('ROLE_SAVE_GROUPS') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ROLE_SAVE_GROUP') and #oauth2.hasScope('write')")
 	public ResponseEntity<Group> update(@PathVariable Long code, @RequestBody Group group) {
 		Group saved = groupService.update(code, group);
 		return ResponseEntity.ok(saved);

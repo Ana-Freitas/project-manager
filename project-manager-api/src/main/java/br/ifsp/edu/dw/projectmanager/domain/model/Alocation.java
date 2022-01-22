@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "project_employee")
-public class ProjectEmployee {
+public class Alocation {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,9 +33,13 @@ public class ProjectEmployee {
 	@Column(name = "end_participation")
 	private LocalDate endParticipation;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "employee")
 	private Employee employee;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "project")
+	private Project project;
 	
 	public Integer getWorkload() {
 		return workload;
@@ -63,15 +68,18 @@ public class ProjectEmployee {
 	public Long getCode() {
 		return code;
 	}	
-	
 	public Employee getEmployee() {
 		return employee;
 	}
-	
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	
+	public Project getProject() {
+		return project;
+	}
+	public void setProject(Project project) {
+		this.project = project;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(code);
@@ -84,7 +92,7 @@ public class ProjectEmployee {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ProjectEmployee other = (ProjectEmployee) obj;
+		Alocation other = (Alocation) obj;
 		return Objects.equals(code, other.code);
 	}
 }

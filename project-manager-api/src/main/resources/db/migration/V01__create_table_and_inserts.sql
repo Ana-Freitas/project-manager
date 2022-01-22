@@ -119,9 +119,9 @@ INSERT INTO permissions (`code`, `description`) VALUES (10, 'ROLE_SAVE_SECTOR');
 INSERT INTO permissions (`code`, `description`) VALUES (11, 'ROLE_REMOVE_SECTOR');
 INSERT INTO permissions (`code`, `description`) VALUES (12, 'ROLE_SEARCH_SECTOR');
 
-INSERT INTO permissions (`code`, `description`) VALUES (13, 'ROLE_SAVE_GROUPS');
-INSERT INTO permissions (`code`, `description`) VALUES (14, 'ROLE_REMOVE_GROUPS');
-INSERT INTO permissions (`code`, `description`) VALUES (15, 'ROLE_SEARCH_GROUPS');
+INSERT INTO permissions (`code`, `description`) VALUES (13, 'ROLE_SAVE_GROUP');
+INSERT INTO permissions (`code`, `description`) VALUES (14, 'ROLE_REMOVE_GROUP');
+INSERT INTO permissions (`code`, `description`) VALUES (15, 'ROLE_SEARCH_GROUP');
 
 INSERT INTO permissions (`code`, `description`) VALUES (16, 'ROLE_ADD_PERMISSION');
 INSERT INTO permissions (`code`, `description`) VALUES (17, 'ROLE_REMOVE_PERMISSION');

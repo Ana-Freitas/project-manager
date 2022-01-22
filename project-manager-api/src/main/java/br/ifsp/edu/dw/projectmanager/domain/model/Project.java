@@ -49,10 +49,6 @@ public class Project {
 	@JoinColumn(name = "sector")
 	private Sector sector;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "project_employee", joinColumns = @JoinColumn(name = "project"),inverseJoinColumns = @JoinColumn(name = "code"))
-	private List<ProjectEmployee> projectEmployees;
-	
 	public String getDescription() {
 		return description;
 	}
@@ -92,14 +88,7 @@ public class Project {
 	public void setSector(Sector sector) {
 		this.sector = sector;
 	}
-	
-	public List<ProjectEmployee> getProjectEmployees() {
-		return projectEmployees;
-	}
-	
-	public void setProjectEmployees(List<ProjectEmployee> projectEmployees) {
-		this.projectEmployees = projectEmployees;
-	}
+
 	
 	@Override
 	public int hashCode() {
