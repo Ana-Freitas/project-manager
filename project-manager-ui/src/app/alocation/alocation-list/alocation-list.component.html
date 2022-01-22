@@ -44,7 +44,9 @@
                             </td>
                             <td>
                                 <span class="p-column-title">Gestor</span>
-                                {{ alocation.manager }}
+                                <span>
+                                    <p-toggleButton onIcon="pi pi-check" offIcon="pi pi-times" name="inputIsManager" [ngModel]="alocation.manager" [disabled]="true"></p-toggleButton>
+                                </span>
                             </td>
                             <td>
                                 <span class="p-column-title">Início Part.</span>

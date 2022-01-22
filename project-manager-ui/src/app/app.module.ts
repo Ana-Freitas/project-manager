@@ -50,6 +50,7 @@ import { NotAuthorizedComponent } from './core/not-authorized.component';
 import { PageNotFoundComponent } from './core/page-not-found.component';
 import { LogoutService } from './core/security/logout.service';
 import { ProjectHttpInterceptor } from './core/security/project-http-interceptor';
+import {ToggleButtonModule} from 'primeng/togglebutton';
 
 registerLocaleData(localePt);
 
@@ -122,6 +123,7 @@ export function tokenGetter(): any {
     InputSwitchModule,
     MenubarModule,
     AutoCompleteModule,
+    ToggleButtonModule,
     JwtModule.forRoot({
       config: {
         tokenGetter,

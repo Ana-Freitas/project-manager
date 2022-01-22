@@ -44,13 +44,15 @@ export class AlocationListComponent implements OnInit {
 
     delete(alocation: any) {
         this.alocationService.delete(alocation.code)
-            .then(() => {
-                this.search();
-                this.messageService.add({
-                    severity: 'success',
-                    summary: 'Excluído',
-                    detail: 'Alocação excluída com sucesso!'
-                });
+            .then((result: boolean) => {
+                if(result){
+                    this.search();
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Excluído',
+                        detail: 'Alocação excluída com sucesso!'
+                    });
+                }
             })
             .catch((erro: any) => this.errorHandler.handle(erro));
     }

@@ -18,7 +18,7 @@
             </div>
             <div class="p-col-12 p-md-9 p-fluid">
                 <span class="p-float-label">
-                    <input id="txtWorkload" name="txtWorkload" type="number" pInputText [(ngModel)]="entity.code">
+                    <input id="txtWorkload" name="txtWorkload" type="number" pInputText [(ngModel)]="entity.workload">
                     <label for="txtWorkload">Carga Horária</label>
                 </span>
             </div>
@@ -31,6 +31,13 @@
             <label>Fim de Participação</label>
             <div class="p-col-12 p-md-9 p-fluid">
                 <p-calendar name="endParticipation" dateFormat="dd/mm/yy" [(ngModel)]="entity.endParticipation"></p-calendar>
+            </div>
+
+            <label for="txtManager">Gerente</label>
+            <div class="p-col-12 p-md-9 p-fluid">
+                <span>
+                    <p-inputSwitch id="txtManager" name="txtManager" [(ngModel)]="entity.manager"></p-inputSwitch>
+                </span>
             </div>
 
             <p-button label="Salvar"  type="submit" icon="pi pi-check" iconPos="right"></p-button>
